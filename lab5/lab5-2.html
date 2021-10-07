@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 2
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            1. В соответствии со своим вариантом написать Java-скрипт в файле lab5-2.html, 
+            выполняющий следующие действия: <br>
+            Вариант 10 - Третье слово строки поставить после первого. Определить количество слов, 
+            в которых первая и последняя буквы совпадают.
+        </h2>`
+      );
+      let str = `Artur Hello lol stas qwerty pleasure.`
+      let words = str.split(' ')
+      let tmp = words[0]
+      words[0] = words[2]
+      words[2] = tmp
+      let new_str = words.join(' ')
+      function is_starts_with_the_same_letter_as_ends(value){
+          if(value[0] != value[value.length - 1]) return false
+          return true
+      }
+      let quantity = words.filter(is_starts_with_the_same_letter_as_ends)
+      quantity = quantity.length
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+            Исходная строка: ${str}<br>
+            После перестановки слов: ${new_str}.
+            <br>Количество слов, где первая и последняя буквы совпадают: ${quantity}
+        </h2>`
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 4
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            Написать программу, которая в каждом слове перемешивает буквы 
+            местами за исключением первой и последней буквы слова.
+        </h2>`
+      );
+      let str = `Arturo 123 Hello lol stas qwerty pleasure zaz`
+      let words = str.split(' ')
+      function replacer(match, p1, p2, p3, offset, string){
+          if(offset != 0 && offset != string.length - 3){
+            return [p3, p1, p2].join('')
+          } else if (offset != 0) {
+            return [p2, p1, p3].join('')
+          } else if (string.length != 3) {
+            return [p1, p3, p2].join('')
+          } else {
+              return [p1, p2, p3].join('')
+          }
+      }
+      for(let i = 0; i < words.length; i++){
+        words[i] = words[i].replace(/(.)(.)(.)/g, replacer)
+      }
+      let new_str = words.join(' ')
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+            Исходная строка: ${str}<br>
+            Измененная строка: ${new_str}
+        </h2>`
+      )
+    </script>
+  </body>
+</html>

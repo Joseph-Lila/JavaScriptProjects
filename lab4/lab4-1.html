@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      function sortFunc(a, b){
+        return (a - b)
+      }
+
+
+      Array.prototype.print = function(){
+          let ans = ``
+          for(let i = 0; i < this.length; i++){
+              ans = ans.concat(`&nbsp;&nbsp;` + this[i])
+          }
+          document.write(
+            `<h2 style="text-align:center;color:green;">${ans}</h2>`
+          )
+      }
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 1
+        </h1>`
+      );
+      //Создание и наполнение массивов
+      let treug = []
+      let kvd = []
+      for(let i = 1; i <= 10; i++){
+          treug.push(i * (i  + 1) / 2)
+          kvd.push(i ** 2)
+      }
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+        1. Создайте массив treug «треугольных» чисел, т.е. чисел вида n(n+1)/2 
+        (где n=1,2,… 10) и выведите значения этого массива на экран в строку (через 2 пробела).
+        </h2>`
+      );
+      treug.print()
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+        2. Создайте массив kvd квадратов натуральных чисел от 1 до 10, 
+        выведите значения этого массива на экран в строку. 
+        </h2>`
+      );
+      kvd.print()
+      document.write(
+        `<h2 style="text-align:center;color:brown;">
+        3.	Объедините эти 2 массива в массив rez, выведите результат на экран. 
+        </h2>`
+      );
+      //let rez = [...treug, ...kvd]
+      let rez = []
+      for(let i = 0; i < treug.length; i++){
+          rez.push(treug[i])
+      }
+      for(let i = 0; i < kvd.length; i++){
+          rez.push(kvd[i])
+      }
+      
+      rez.print()
+      document.write(
+        `<h2 style="text-align:center;color:brown;">
+        4.	Отсортируйте массив rez в обратном порядке, выведите результат на экран.  
+        </h2>`
+      );
+      //rez = rez.sort(sortFunc)
+      //rez.print()
+      rez = rez.reverse()
+      rez.print()
+    </script>
+  </body>
+</html>

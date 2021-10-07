@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 4
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            1. Создайте массивы<br> 
+            fruits=[‘apple’,’pineapple’,’mango’,’melon’,’grape’]; <br>
+            citrus=[‘orange’,’lemon’,’lime’]. 
+        </h2>`
+      );
+      let fruits=[`apple`,`pineapple`,`mango`,`melon`,`grape`]
+      let citrus=[`orange`,`lemon`,`lime`]
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+            fruits = ${fruits}<br>
+            citrus = ${citrus}
+        </h2>`
+      )
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+        2. Последовательно, в каждой отдельной строчке, выведите:<br>
+        а) массив fruits; <br>
+        б) массив citrus; <br>
+        в) объединенный массив fruits; <br>
+        г) массив fruits, в котором после mango вставлены: pear, cherry, plum, raspberry, strawberry;<br>
+        д) массив fruits, в котором удалены последние 3 элемента; <br>
+        е) выведите отсортированный в алфавитном порядке массив fruits;<br> 
+        ж) выведите массив fruits в обратном алфавитном порядке; <br>
+        з) выведите массив fruits, отсортированный по длине слов.
+        </h2>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:pink;">а)${fruits}</h2>`
+      )
+      document.write(
+        `<h2 style="text-align:center;color:pink;">б)${citrus}</h2>`
+      )
+      let tip_v = (Array.from(fruits)).concat(Array.from(citrus))
+      document.write(
+        `<h2 style="text-align:center;color:pink;">в)${tip_v}</h2>`
+      )
+      let tip_g = Array.from(fruits)
+      tip_g.splice(3, 0, 'pear', 'cherry', 'plum', 'raspberry', 'strawberry')
+      document.write(
+        `<h2 style="text-align:center;color:pink;">г)${tip_g}</h2>`
+      )
+      let tip_d = Array.from(fruits)
+      tip_d.splice(-3, 3)
+      document.write(
+        `<h2 style="text-align:center;color:pink;">д)${tip_d}</h2>`
+      )
+      let tip_e = Array.from(fruits).sort()
+      document.write(
+        `<h2 style="text-align:center;color:pink;">е)${tip_e}</h2>`
+      )
+      let tip_j = (Array.from(fruits).sort()).reverse()
+      document.write(
+        `<h2 style="text-align:center;color:pink;">ж)${tip_j}</h2>`
+      )
+      let tip_z = Array.from(fruits).sort(function(a, b){return a.length - b.length})
+      document.write(
+        `<h2 style="text-align:center;color:pink;">з)${tip_z}</h2>`
+      )
+    </script>
+  </body>
+</html>

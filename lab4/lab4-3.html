@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      Array.prototype.print = function(){
+          let ans = ``
+          for(let i = 0; i < this.length; i++){
+              ans = ans.concat(`&nbsp;&nbsp;` + this[i])
+          }
+          document.write(
+            `<h2 style="text-align:center;color:green;">${ans}</h2>`
+          )
+      }
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 3
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            1. Сформируйте одномерный массив (не менее 15 элементов, 
+            для генерации значений массива можно воспользоваться функцией random объекта Math), 
+            выведите значения этого массива на экран в строку. 
+        </h2>`
+      );
+      let my_arr = Array.from({length: 25}, () => Math.floor(Math.random() * 10) - 5)
+      my_arr.print()
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+        2. Выполните задание в соответствии с вариантом, используя встроенные методы массивов.<br>
+        10 --- Найти среднее арифметической чисел, неравных заданному С, 
+        и произведение неположительных чисел, стоящих на четных местах.
+        </h2>`
+      );
+      let C = parseInt(prompt('Введите C:'))
+      let my_arr_without_C = my_arr.filter((n) => {return n != C});
+      let average_number = my_arr_without_C.reduce((sum, current) => sum + current) / my_arr_without_C.length
+      document.write(
+        `<h2 style="text-align:center;color:pink;">Среднее арифметическое: ${average_number}</h2>`
+      )
+      let negative_on_odd = my_arr.reduce((res, item, index) => {
+          if (index % 2 != 0 && item < 0) res *= item
+          return res
+      }, 1)
+      document.write(
+        `<h2 style="text-align:center;color:pink;">Произведение неположительных чисел, стоящих на четных местах: ${negative_on_odd}</h2>`
+      )
+    </script>
+  </body>
+</html>

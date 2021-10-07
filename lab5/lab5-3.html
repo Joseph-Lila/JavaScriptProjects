@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 3
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            Написать простейшую программу шифрования. 
+            Программа каждую букву заменяет на следующую за ней в алфавите («я» переходит в «а»).
+        </h2>`
+      );
+      let str = `Artur Hello lol stas qwerty pleasure zaz.`
+      let letters = str.split('')
+      for(let i = 0; i < letters.length; i++){
+          if(letters[i].match(/[a-z]/ig)){
+              if(letters[i].charCodeAt(0) == 90) letters[i] = String.fromCharCode(65)
+              else if (letters[i].charCodeAt(0) == 122) letters[i] = String.fromCharCode(97)
+              else letters[i] = String.fromCharCode(letters[i].charCodeAt(0) + 1)
+          }
+      }
+      let new_str = letters.join('')
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+            Исходная строка: ${str}<br>
+            Зашифрованная строка: ${new_str}
+        </h2>`
+      )
+    </script>
+  </body>
+</html>

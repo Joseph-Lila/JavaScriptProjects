@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      function weekDay(size, day, color) {
+        document.write(`<div style="font-size:${size}pt; color:${color}">${day}</div>`);
+      }
+      let days = [`ПОНЕДЕЛЬНИК`,
+      `ВТОРНИК`,
+      `СРЕДА`,
+      `ЧЕТВЕРГ`,
+      `ПЯТНИЦА`,
+      `СУББОТА`,
+      `ВОСКРЕСЕНЬЕ`,
+    ]
+      let colors = [`pink`,
+      `blue`,
+      `green`,
+      `black`,
+      `orange`,
+      `red`,
+      `brown`,
+    ]
+      for(let i = 0; i < days.length; i++){
+        weekDay(7 - i, days[i], colors[i])
+      }
+    </script>
+  </body>
+</html>

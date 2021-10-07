@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      Array.prototype.print = function(){
+          let ans = ``
+          for(let i = 0; i < this.length; i++){
+              ans = ans.concat(`&nbsp;&nbsp;` + this[i])
+          }
+          document.write(
+            `<h2 style="text-align:center;color:green;">${ans}</h2>`
+          )
+      }
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 2
+        </h1>`
+      );
+      document.write(
+        `<h2 style="text-align:center;color:orange;">
+            1. Сформируйте одномерный массив (не менее 15 элементов, 
+            для генерации значений массива можно воспользоваться функцией random объекта Math), 
+            выведите значения этого массива на экран в строку. 
+        </h2>`
+      );
+      let my_arr = Array.from({length: 25}, () => Math.floor(Math.random() * 100))
+      my_arr.print()
+      document.write(
+        `<h2 style="text-align:center;color:darkblue;">
+        2. Выполните задание в соответствии с вариантом, не используя встроенные функции.<br>
+        10 --- Найти минимальный элемент, присвоить его значение последнему элементу массива, 
+        а вместо минимального элемента записать значение 3N
+        </h2>`
+      );
+      let min = my_arr[0]
+      let mim_ind = 0
+      for(let i = 1; i < my_arr.length; i++){
+          if(my_arr[i] < min){
+              min = my_arr[i]
+              mim_ind = i   
+          }
+      }
+      my_arr[mim_ind] = "3N"
+      my_arr[my_arr.length - 1] = min
+      my_arr.print()
+    </script>
+  </body>
+</html>

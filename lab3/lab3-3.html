@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 3
+        </h1>`
+      );
+      //&emsp = 4 пробела
+      document.write(
+        `<p style="font-size:21px;margin:0;">
+        &emsp;&emsp;В соответствии со своим вариантом вычислить значение функции с помощью 
+        разложения в ряд Тейлора. Задание реализовать с использованием рекурсии. 
+        Вывести на экран значения функции, используя стандартные функции и с помощью 
+        разложения функции в ряд Тейлора.
+        </p>`
+      );
+      document.write(
+        `<p style="font-size:21px;margin:0;text-align:center;">
+        <br>
+        <img src="screen/screenshot3.JPG"> <br>
+        <img src="screen/screenshot4.JPG">
+        </p>`
+      );
+      let x = 2
+      while(Math.abs(x) >= 1){
+          x = parseFloat(prompt("Введите x: "))
+      }
+      let math_y = Math.atanh(x)
+      function teilor_y(x){
+        let ans = 0
+        let n = 0
+        do{
+            ans += Math.pow(x, 2 * n + 1) / (2 * n + 1)
+            n++ 
+        } while(Math.pow(x, 2 * n + 1) / (2 * n + 1) > 0.00001)
+        return ans
+      }
+      document.write(
+        `<p style="font-size:28px;margin:0;text-align:center;color:darkblue">
+        <br>
+        &emsp;&emsp;x = ${x}. <br>
+        &emsp;&emsp;Arth (Math) = ${math_y}. <br>
+        &emsp;&emsp;Arth (Teilor) = ${teilor_y(x)}. <br>
+        </p>`
+      );
+    </script>
+  </body>
+</html>
