@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      let lang
+      try{
+        lang = prompt("Введите значение переменной lang:")
+      } catch
+      {
+        lang = "Artur"
+      }
+      switch(lang){
+        case "ru":
+            alert("Язык - русский")
+            break
+        case "en":
+            alert("Язык - английский")
+            break
+        case "fr":
+            alert("Язык - французский")
+            break
+        case "de":
+            alert("Язык - немецкий")
+            break
+        default:
+            alert("Язык неизвестен")
+      }
+    </script>
+  </body>
+</html>

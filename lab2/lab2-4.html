@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.write(
+          `<table border = "1" cellpadding = "5">`
+            )
+      for(let i = 0; i < 10; i++){
+        document.write(
+          `<tr>`
+            )
+          for(let j = 1; j <= 10; j++){
+              let flag = true
+              for(let h = 1; h <=14; h++){
+                  if(i * 10 + j == h * (h + 1) / 2){
+                    document.write(`<td style="color:red">${i * 10 + j}</td>`)
+                    flag = false
+                    break        
+                  }
+              }
+              if(flag) document.write(`<td>${i * 10 + j}</td>`)
+          }
+          document.write(
+          `</tr>`
+            )  
+      }
+      document.write(
+          `</table>`
+            )
+    </script>
+  </body>
+</html>
