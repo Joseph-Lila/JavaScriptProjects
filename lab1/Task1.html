@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      const x = parseInt(prompt("Введите количество разных единиц товара:"));
+      let titles = []; //массив для наименований товаров
+      let quantities = []; //массив, содержащий количество единиц каждого товара
+      let costs = []; //массив стоимостей товаров
+      for(let i = 0; i < x; i++)
+      {
+        let tmp = prompt("Введите наименование товара #"+ (i+1));
+        titles.push(tmp); //команда push добавляет в конец массива новый элемент
+        let tmp2 = parseInt(prompt("Введите количество:"));
+        quantities.push(tmp2);
+        let tmp3 = parseFloat(prompt("Введите стоимость за единицу товара:"));
+        costs.push(tmp3);
+      }
+      let discount = 0; // переменная, содержащая размер скидки
+      while(discount < 1 || discount > 5)
+      {
+        discount = parseInt(prompt("Введите скидку (от 1 до 5%):"));
+      }
+      let date = new Date().toLocaleDateString(); //число
+      let time = new Date().toLocaleTimeString().slice(0,-3); //время
+      document.write('<p style="font-size:18px;margin:0;">ООО "Евроторг"</p>');
+      document.write('<h3 style="margin:0;">&nbsp;&nbsp;&nbsp;СПАСИБО ЗА ПОКУПКУ!</h3>');
+      document.write(`<p style="font-size:18px;margin:0;">Дата покупки: ${date} ${time}</p>`);
+      document.write(`<p style="margin:0;">&nbsp;</p>`);
+      for(let i = 0; i < x; i++)
+      {
+        document.write(`<p style="font-size:18px;margin:0;">${titles[i]}</p>`);
+        document.write(`<p style="font-size:18px;margin:0;">&emsp;&emsp;${quantities[i]}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;=&nbsp;${quantities[i] * costs[i]}</p>`);
+      }
+      document.write(`<p style="margin:0;">&nbsp;</p>`);
+      let totalCost = 0.00;
+      //найдем общую стоимость
+      for(let i = 0; i < x; i++)
+      {
+        totalCost += quantities[i] * costs[i];
+      }
+      document.write('<h3 style="margin:0;">ИТОГО</h3>');
+      document.write(`<h3 style="margin:0;">&emsp;&emsp;&emsp;${totalCost} BYN</h3>`);
+      document.write(`<p style="font-size:18px;margin:0;">Ваша скидка: ${discount}%</p>`);
+      document.write(`<p style="font-size:18px;margin:0;">&emsp;&emsp;&emsp;&emsp;${discount / 100 * totalCost} BYN</p>`);
+      document.write('<h3 style="margin:0;">СУММА СО СКИДКОЙ</h3>');
+      document.write(`<h3 style="margin:0;">&emsp;&emsp;&emsp;${totalCost * (100 - discount) / 100} BYN</h3>`);
+    </script>
+  </body>
+</html>

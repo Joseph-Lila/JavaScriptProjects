@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      let a = parseFloat(prompt("Введите сторону куба a (Таблица 1): "));
+      let volume = a ** 3; // объем
+      let square = 6 * a * a; //площадь
+      document.write(
+        `<h1 style="text-align:center;color:red;">
+        Задание 2
+        </h1>`
+      );
+      //&emsp = 4 пробела
+      document.write(
+        `<p style="font-size:21px;margin:0;">
+        &emsp;&emsp;Помогите школьнику выполнить домашнее задание: <br> 
+        решить задачу (Задание 2.1) и посчитать значение переменной b (Задание 2.2). <br>
+        &emsp;&emsp;Исходные данные вводятся с использованием метода prompt. При выводе информации 
+        предусмотреть форматирование документа, вывод текста задания, включая рисунок 
+        исходного выражения, и вывод информации о разработчике скрипта.
+        </p>`
+      );
+      document.write(
+        `<h1 style="text-align:center;color:orange;">
+        Задание 2.1
+        </h1>`
+      );
+      document.write(
+        `<p style="font-size:21px;margin:0;text-align:center;">
+        <img src="img/screenshot1.JPG">
+        <img src="img/screenshot2.JPG">
+        </p>`
+      );
+      document.write(
+        `<p style="font-size:28px;margin:0;text-align:center;color:darkblue">
+        <br>
+        &emsp;&emsp;a = ${a}. <br>
+        &emsp;&emsp;Объем куба со стороной a = ${volume}. <br>
+        &emsp;&emsp;Площадь поверхности куба со стороной a = ${square}.
+        </p>`
+      );
+      document.write(
+        `<h1 style="text-align:center;color:pink;">
+        Задание 2.2
+        </h1>`
+      );
+      document.write(
+        `<p style="font-size:21px;margin:0;text-align:center;">
+        <img src="img/screenshot3.JPG">
+        <img src="img/screenshot4.JPG">
+        </p>`
+      );
+      let x = parseFloat(prompt("Введите x (Таблица 2): "));
+      let y = parseFloat(prompt("Введите y (Таблица 2): "));
+      let z = parseFloat(prompt("Введите z (Таблица 2): "));
+      let b = Math.exp(Math.abs(x - y)) * Math.pow(Math.tan(z) ** 2 + 1, x)
+      document.write(
+        `<p style="font-size:28px;margin:0;text-align:center;color:green">
+        <br>
+        &emsp;&emsp;x = ${x}. <br>
+        &emsp;&emsp;y = ${y}. <br>
+        &emsp;&emsp;z = ${z}. <br>
+        &emsp;&emsp;b = ${b}. <br>
+        </p>`
+      );
+      document.write(
+        `<h1 style="text-align:center;color:grey;">
+        Информация о разработчике скрипта
+        </h1>`
+      );
+      document.write(
+        `<p style="font-size:28px;margin:0;text-align:center;color:purple">
+        Имя: Артур<br>
+        Фамилия: Прокопенко<br>
+        Группа: ИП-32<br>
+        Любимое слово: ж***<br>
+        </p>`
+      );
+    </script>
+  </body>
+</html>
