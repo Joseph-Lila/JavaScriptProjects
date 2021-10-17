@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+//-----------------------------------------------------------------------------
+      class MyVideoCard{
+          constructor(pInterface, pGraphicsProcessorManufacturer, pGraphicProcessor,
+          pGraphicsProcessorFrequency, pVideoMemoryVolume){
+            this.interface = pInterface;
+            this.graphics_processor_manufacturer = pGraphicsProcessorManufacturer;
+            this.graphic_processor = pGraphicProcessor;
+            this.graphics_processor_frequency = pGraphicsProcessorFrequency;
+            this.video_memory_volume = pVideoMemoryVolume;
+          }
+          info(){
+            document.write(`<h2 style="text-align:center;color:pink;">
+            Интерфейс: ${this.interface}<br>
+            Производитель графического процессора: ${this.graphics_processor_manufacturer}<br>
+            Графический процессор: ${this.graphic_processor}<br>
+            Частота графического процессора: ${this.graphics_processor_frequency}<br>
+            Видеопамять (объем): ${this.video_memory_volume}<br>
+            </h2>`)
+            }      
+          }
+//-----------------------------------------------------------------------------
+      class NewVideoCard extends MyVideoCard{
+          constructor(pInterface, pGraphicsProcessorManufacturer, pGraphicProcessor,
+          pGraphicsProcessorFrequency, pVideoMemoryVolume, pDateOfMarketEntry, pCost){
+              super(pInterface, pGraphicsProcessorManufacturer, pGraphicProcessor,
+              pGraphicsProcessorFrequency, pVideoMemoryVolume);
+              this.date_of_market_entry = pDateOfMarketEntry;
+              this.cost = pCost;
+          }
+          info(){
+              super.info();
+              document.write(`<h2 style="text-align:center;color:pink;">
+              Дата выхода на рынок: ${this.date_of_market_entry}<br>
+              Стоимость: ${this.cost}<br>
+            </h2>`)
+          }
+      }
+      let my_arr = [new NewVideoCard('a','a','a','a','a','a',1),
+      new NewVideoCard('b','q','q','q','q','q',2),
+      new NewVideoCard('c','w','w','w','w','w',3),
+      new NewVideoCard('d','e','e','e','e','e',4),
+      new NewVideoCard('f','r','r','r','r','r',5),
+      new NewVideoCard('g','t','t','t','t','t',6),
+      new NewVideoCard('h','y','y','y','y','y',7),
+    ]
+//-----------------------------------------------------------------------------
+      document.write(
+          `<table border = "1" cellpadding = "5">`
+            )
+      document.write(
+        `<tr><td colspan="8"; style="color:darkblue;text-align:center"> Название класса </td></tr>
+        <tr><td colspan="8"; style="color:pink;text-align:center"> NewVideoCard </td></tr>
+        <tr><td style="color:orange;text-align:center"> № </td><td colspan="7"; style="color:green;text-align:center"> Свойства </td></tr>
+        <tr>
+          <td></td>
+          <td style="color:orange">interface</td>
+          <td style="color:orange">graphics_processor_manufacturer</td>
+          <td style="color:orange">graphic_processor</td>
+          <td style="color:orange">graphics_processor_frequency</td>
+          <td style="color:orange">video_memory_volume</td>
+          <td style="color:orange">date_of_market_entry</td>
+          <td style="color:orange">cost</td>
+        </tr>`
+      )
+      for(let i = 0; i < my_arr.length; i++){
+        document.write(
+          `<tr>
+            <td style="color:blue;text-align:center">${i + 1}</td>
+            <td style="color:red;text-align:center">${my_arr[i].interface}</td>
+            <td style="color:green;text-align:center">${my_arr[i].graphics_processor_manufacturer}</td>
+            <td style="color:purple;text-align:center">${my_arr[i].graphic_processor}</td>
+            <td style="color:black;text-align:center">${my_arr[i].graphics_processor_frequency}</td>
+            <td style="color:pink;text-align:center">${my_arr[i].video_memory_volume}</td>
+            <td style="color:gold;text-align:center">${my_arr[i].date_of_market_entry}</td>
+            <td style="color:grey;text-align:center">${my_arr[i].cost}</td>
+          </tr>`
+        )
+      }
+      
+      document.write(
+          `</table>`
+            )
+    </script>
+  </body>
+</html>

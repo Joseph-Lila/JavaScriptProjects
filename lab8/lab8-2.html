@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <link rel="stylesheet" href="lab8-2.css"/>
+  </head>
+  <body>
+    <form class='form_with_validation'>
+      <div>
+        <div>
+          <label>Серия паспорта: </label>
+        </div>
+        <div>
+          <input type='text' class='password_ser field'/>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label>Номер паспорта: </label>
+        </div>
+        <div>
+          <input type='text' class='password_num field'/>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label>Номер бланка: </label>
+        </div>
+        <div>
+          <input type='text' class='form_num field'/>
+        </div>
+      </div>
+      <div>
+        <div>
+          <label>Предмет: </label>
+        </div>
+        <div>
+          <select class='subject field'>
+            <option value='empty'>Выбрать предмет</option>
+            <option value='russian'>Русский язык</option>
+            <option value='math'>Математика</option>
+            <option value='physics'>Физика</option>
+          </select>
+        </div>
+        <div><img src='img1.JPG'></div>
+        <div>
+          <label>Код на картинке: </label>
+        </div>
+        <div>
+          <input type='text' class='picture_code field'/>
+        </div>
+      </div>
+      <input type='submit' class='validateBtn' value='Найти'/>
+    </form>
+    <script src='code.js'>
+    </script>
+  </body>
+</html>

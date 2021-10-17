@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style>
+		body {
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid rgb(112, 112, 112);
+			padding: 10px;
+			text-align: center;
+		}
+
+		table {
+			margin: auto;
+			border: 1px solid rgb(112, 112, 112);
+		}
+
+		input,
+		button {
+			margin: 10px;
+		}
+
+		div {
+			margin: auto;
+		}
+
+        body {
+            background-image: url(back.jpg);
+        }
+
+        #cont {
+            margin: auto;
+            background-color: azure;
+        }
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Артур Прокопенко</title>
+</head>
+
+<body>
+	<div>
+		<input type="date">
+		<input type="date">
+		<button id="GetDate">Вывести данные</button>
+	</div>
+
+	<table id='cont'>
+		<tbody>
+		</tbody>
+	</table>
+	<script>
+		let dateFormater = (date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
+		document.querySelector("#GetDate").onclick = async () => {
+			document.querySelector("table").innerHTML = "<thead><tr><th>Дата</th><th>Курс</th></tr></thead><tbody></tbody>";
+			function httpGet(url) {
+				return new Promise(function (resolve, reject) {
+					let XMLH = new XMLHttpRequest();
+					XMLH.open('GET', url, true);
+					XMLH.onload = function () {
+						if (this.status == 200) {
+							resolve(JSON.parse(this.response));
+						} else {
+							let error = new Error(this.statusText);
+							error.code = this.status;
+							reject(error);
+						}
+					};
+					XMLH.onerror = function () {
+						reject(new Error("Network Error"));
+					};
+					XMLH.send();
+				});
+			}
+
+			let startDate = new Date(document.querySelectorAll("input")[0].value);
+			let endDate = new Date(document.querySelectorAll("input")[1].value);
+			while (startDate <= endDate) {
+				let promise = httpGet(`https://www.nbrb.by/api/exrates/rates/453?ondate=${dateFormater(startDate)}`);
+				let response = await promise;
+
+				let tbody = document.querySelector("table>tbody");
+
+				tbody.innerHTML += `<tr><td>${dateFormater(startDate)}</td><td>${response.Cur_OfficialRate.toFixed(2)}</td></tr>`
+
+				startDate.setDate(startDate.getDate() + 1);
+			}
+		}
+
+	</script>
+</body>
+
+</html>

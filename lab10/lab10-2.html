@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+        }
+        input, button {
+            height: 100%;
+            width: 95.5%;
+            border-radius: 20%;
+        }
+        table {
+            padding-top: 70px;
+            padding-bottom: 70px;
+            margin: auto;
+            margin-top: 200px;
+        }
+        div {
+            margin-left: 800px;
+            margin-right: 800px;
+            background-image: url(backgr.jpg);
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Артур Прокопенко</title>
+    <script src="jQuery.js"></script>
+</head>
+<body>
+    <div>
+    <table border="0">
+        <tbody>
+            <tr>
+                <td colspan="4"><input type="text"></td>
+            </tr>
+            <tr>
+                <td class="function_button"><button>M</button></td>
+                <td class="function_button"><button>M+</button></td>
+                <td class="function_button"><button>C</button></td>
+                <td class="function_button"><button>CE</button></td>
+            </tr>
+            <tr>
+                <td><button>9</button></td>
+                <td><button>8</button></td>
+                <td><button>7</button></td>
+                <td><button>/</button></td>
+            </tr>
+            <tr>
+                <td><button>6</button></td>
+                <td><button>5</button></td>
+                <td><button>4</button></td>
+                <td><button>*</button></td>
+            </tr>
+            <tr>
+                <td><button>3</button></td>
+                <td><button>2</button></td>
+                <td><button>1</button></td>
+                <td><button>-</button></td>
+            </tr>
+            <tr>
+                <td><button>0</button></td>
+                <td><button>.</button></td>
+                <td class="function_button"><button>=</button></td>
+                <td><button>+</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <script>
+        var addSymbol = (w) => {
+            var where = $(w);
+            return (e) =>{
+                if (!e.target.parentElement.classList.contains("function_button"))
+                    where.val(where.val() + e.target.textContent);
+                switch (e.target.textContent) {
+                    case "=":
+                         where.val(eval(where.val()));
+                    break;
+                    case "C":
+                        where.val("");
+                    break;
+                    case "CE":
+                        where.val("");
+                        localStorage.clear();
+                    break;
+                    case "M":
+                        where.val(localStorage.getItem(0));
+                    break;
+                    case "M+":
+                        localStorage.setItem(0, eval(where.val()));
+                    break;
+                
+                    default:
+                        break;
+                }
+            }
+        }
+        $("input").on("input", function(e) {
+            if (this.value.endsWith("=")) this.value = eval(this.value.slice(0, -1));
+        })
+        //Переписать цикл
+        var buttons = $("button");
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = addSymbol("input");
+            
+        }
+        // buttons.each(e => {
+        //     e.on("click", addSymbol("input"));
+        // });
+    </script>
+</body>
+</html>

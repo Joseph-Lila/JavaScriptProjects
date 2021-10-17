@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<style>
+		body {
+			width: 100%;
+		}
+
+		td {
+			border: 1px solid black;
+			padding: 5px;
+		}
+
+		th {
+			border: 1px solid black;
+		}
+
+		table {
+			margin: auto;
+			border: 1px solid black;
+		}
+
+		input,
+		button {
+			margin: 10px;
+		}
+
+		div {
+			margin-left: 550px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+        body {
+            background-image: url(back.jpg);
+        }
+
+        #cont {
+            margin: auto;
+            background-color: azure;
+        }
+	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Артур Прокопенко</title>
+</head>
+
+<body>
+	<div>
+		<input type="date">
+		<input type="date">
+		<button id="GetDate">Вывести данные</button>
+	</div>
+	<table id='cont'>
+	</table>
+
+	<script>
+		let dateFormater = (date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
+		document.querySelector("#GetDate").onclick = async () => {
+			document.querySelector("table").innerHTML = "<thead><tr><th>Дата</th><th>Австралия</th><th>Исландия</th><th>Норвегия</th></tr></thead><tbody></tbody>";
+
+			let startDate = new Date(document.querySelectorAll("input")[0].value);
+			let endDate = new Date(document.querySelectorAll("input")[1].value);
+			while (startDate <= endDate) {
+                // 57 - 1-й и 63 - 3-й https://www.nbrb.by/api/exrates/rates?periodicity=0
+                // https://www.nbrb.by/apihelp/exrates/sample
+				let promiseIs = await fetch(`https://www.nbrb.by/api/exrates/rates/440?ondate=${dateFormater(startDate)}`);
+				let promiseIr = await fetch(`https://www.nbrb.by/api/exrates/rates/453?ondate=${dateFormater(startDate)}`);
+				let promiseIz = await fetch(`https://www.nbrb.by/api/exrates/rates/455?ondate=${dateFormater(startDate)}`);
+
+				let responseIs = await promiseIs.json();
+				let responseIr = await promiseIr.json();
+				let responseIz = await promiseIz.json();
+
+				let tbody = document.querySelector("table>tbody");
+
+				tbody.innerHTML += `<tr>
+                    <td>${dateFormater(startDate)}</td>
+                    <td>${(responseIr.Cur_OfficialRate / responseIs.Cur_OfficialRate).toFixed(2)}</td>
+                    <td>1</td>
+                    <td>${(responseIz.Cur_OfficialRate / responseIs.Cur_OfficialRate).toFixed(2)}</td></tr>`
+
+				startDate.setDate(startDate.getDate() + 1);
+			}
+		}
+
+	</script>
+</body>
+
+</html>

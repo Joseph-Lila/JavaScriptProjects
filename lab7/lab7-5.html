@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <link rel="stylesheet" href="lab7-5.css"/>
+  </head>
+  <body>
+    <div onclick="just_click(arguments[0])" style='text-align: center;'>
+      <ol>
+        <li>
+          <p>Чак Паланик - Бойцовский клуб</p>
+        </li>
+        <li>
+          <p>Фридрих Ницше - Так говорил заратустра</p>
+        </li>
+        <li>
+          <p>Льюис Кэрролл - Приключения Алисы в Стране чудес</p>
+        </li>
+        <li>
+          <p>Бхагаван Раджниш Ошо - Вигьяна Бхайрава Тантра (Книга тайн)</p>
+        </li>
+        <li>
+          <p>Лорд Байрон - Дон Жуан</p>
+        </li>
+        <li>
+          <p>Майорга Хуан - Мальчик за последней партой</p>
+        </li>
+        <li>
+          <p>Рэй Бредбери - 451 градус по Фаренгейту</p>
+        </li>
+        <li>
+          <p>Джеймс Дэшнер - Бегущий в лабиринте</p>
+        </li>
+        <li>
+          <p>Марк Сканави - Сборник задач по математике</p>
+        </li>
+        <li>
+          <p>Swaroop C H - A Byte of Python</p>
+        </li>
+        <li>
+          <p>Томас Манн - Признания авантюриста Феликса Круля</p>
+        </li>
+        <li>
+          <p>Энн Райс - Интервью с вампиром</p>
+        </li>
+        <li>
+          <p>Автор неизвестен - Сутта-нипата (Трипитака)</p>
+        </li>
+        <li>
+          <p>Алекс Лесли - Игра Мастера и Охотницы. Кодекс Мастера и Охотницы</p>
+        </li>
+        <li>
+          <p>Ричард Бах - Чайка по имени Джонатан Ливингстон</p>
+        </li>
+        <li>
+          <p>............ - ...............</p>
+        </li>
+      </ol>
+    </div>
+    <script>
+      "use strict";
+
+      function getIdWithContent(find) {
+        let my_content = document.getElementsByTagName('p')
+        for(let i = 0; i < my_content.length; i++){
+            let content = my_content[i]
+            if (content.textContent === find) {
+               return i
+            }
+        }
+        return -1  
+      }
+
+      function hasClass(elem, className) {
+        return new RegExp("(^|\\s)"+className+"(\\s|$)").test(elem.className)
+      }
+
+      //Получим коллекцию записей и создадим переменную, 
+      //которая будет хранить id последней выделенной записи
+      var my_content = document.getElementsByTagName('p')
+      var last_edited = -1
+
+
+      function just_click(event) {
+        event = event || window.event
+        var elem = event.target || event.srcElement
+
+        if (event.ctrlKey){
+          if (hasClass(elem, 'ChangedBGColor')) {
+          elem.classList.remove("ChangedBGColor")
+          return
+        } else {
+          elem.classList.add("ChangedBGColor")
+          last_edited = getIdWithContent(elem.textContent)
+          return
+        }
+        }
+
+        if (event.shiftKey) {
+          if (last_edited === -1){
+            return
+          } else {
+            let current_id = getIdWithContent(elem.textContent)
+            if (current_id < last_edited) {
+              for (let i = current_id; i <= last_edited; i++){
+                if (!hasClass(my_content[i], 'ChangedBGColor')){
+                  my_content[i].classList.add("ChangedBGColor")
+                }
+              }
+            } else {
+              for (let i = last_edited; i <= current_id; i++){
+                if (!hasClass(my_content[i], 'ChangedBGColor')){
+                  my_content[i].classList.add("ChangedBGColor")
+                }
+              }
+            }
+          }
+          last_edited = current_id
+        }
+
+        if (hasClass(elem, 'ChangedTextColor')) {
+          elem.classList.remove("ChangedTextColor")
+          return
+        }
+
+        elem.classList.add("ChangedTextColor")
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <ul>
+        <li><a href="index-html">index-html</a></li>
+        <li><a href="https://google.com">https://google.com</a></li>
+        <li><a href="https://www.gstu.by">https://www.gstu.by/</a></li>
+        <li><a href="file:///G:/users/RPI/test.html">file:///G:/users/RPI/test.html</a></li>
+        <li><a href="/local/path">/local/path</a></li>
+        <li><a href="http://www.php.su/">http://www.php.su/</a></li>
+        <li><a href="/images/cat.jpg">/images/cat.jpg</a></li>
+        <li><a href="https://www.tut.by/">https://www.tut.by/</a></li>
+    </ul>
+    <script>
+      "use strict";
+      let my_links = document.links
+      for(let i = 0; i < my_links.length; i++){
+          let link = my_links[i]
+          if(link.toString().includes('http://') || link.toString().includes('https://')){
+              link.style.color = "black"
+              link.style.textDecoration = 'None'
+              link.style.borderBottom = "1px dotted black"
+          }
+      }
+    </script>
+  </body>
+</html>

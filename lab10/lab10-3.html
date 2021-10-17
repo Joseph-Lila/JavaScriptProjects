@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Артур Прокопенко</title>
+   <script src="jQuery.js"></script>
+</head>
+<body>
+    <input type="date" id='get_date'>
+    <table border="1"></table>
+    <script>
+        $("input").on("input", () => {
+            let date = new Date(document.getElementById('get_date').value)
+            createTable(new Date(2021, (date.getMonth())), "table") 
+        }
+            );
+        
+        var createTable = ((date, output) => {
+            var creator = "<thead><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th><thead>";
+            creator += "<tbody><tr>";
+            var currentMonth = date.getMonth();
+            let i = 0;
+            for(i = 0; i < date.getDay()-1; i++){
+                creator += "<td></td>";
+            }
+            while (date.getMonth() == currentMonth){
+                if (i >= 7) {
+                    creator += "</tr><tr>";
+                    i = 0;
+                }
+                creator += "<td>" + date.getDate() + "</td>";
+                i++;
+                date.setDate(date.getDate()+1);
+            }
+            for(; i <7; i++){
+                creator += "<td></td>"
+            }
+            creator += "</tr>";
+            creator += "</tbody>";
+            $(output + ">tbody").remove();
+            $(output + ">thead").remove();
+            $(output).append(creator);
+        });
+        
+    </script>
+</body>
+</html>

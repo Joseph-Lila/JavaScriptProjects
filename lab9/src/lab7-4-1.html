@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      let colors =[
+          [
+              'IndianRed',
+              'Khaki',
+              'PaleGreen',
+              'SpringGreen',
+              'Aqua',
+              'DodgerBlue',
+              'HotPink',
+              'PaleVioletRed',
+          ],
+          [
+              'Red',
+              'Yellow',
+              'LawnGreen',
+              'MediumSpringGreen',
+              'Cyan',
+              'SteelBlue',
+              'MediumSlateBlue',
+              'MediumVioletRed',
+          ],
+          [
+              'Gold',
+              'Gold',
+              'Chartreuse',
+              'Gold',
+              'Gold',
+              'DarkOrchid',
+              'Maroon',
+              'RosyBrown',
+          ],
+          [
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+          ],
+          [
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+              'Gold',
+          ],
+          [
+              'Black',
+              'Ovile',
+              'DarkOliveGreen',
+              'SlateGrey',
+              'DarkCyan',
+              'Silver',
+              'Purple',
+              'White',
+          ],
+      ]
+      document.write(
+          `<table cellpadding = "5">
+            <caption>Основные цвета:</caption>`
+            )
+      for(let i = 0; i < 6; i++){
+        document.write(
+          `<tr>`
+            )
+          for(let j = 1; j <= 8; j++){
+            document.write(`<td style="color:red">
+                <input type=button value='' style='width:35; htight:35; background:${colors[i][j - 1]}' onClick=bgColor='${colors[i][j - 1]}'>
+                </td>`)
+          }
+          document.write(
+          `</tr>`
+            )  
+      }
+      document.write(
+          `</table>`
+            )
+    </script>
+  </body>
+</html>

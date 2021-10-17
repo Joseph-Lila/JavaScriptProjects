@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <link rel="stylesheet" href="lab8-1.css"/>
+  </head>
+  <body>
+    <form name='my_form' style="background-color: snow; margin: 5px; border-radius: 10px; padding: 10px;">
+      <p style="text-align: center;">
+        <textarea name='task_description' style="width: 40%; height: 200px;">
+  Необходимо создать веб-страницу с формой.
+Написать скрипт, который находит среднее арифметическое введенных значений и 
+выводит результат в поле формы при нажатии на кнопку «Вычислить». 
+В программе предусмотреть обработку исключительной ситуации, 
+когда пользователь не ввел значений (хотя бы одного) или введенные значения 
+не являются числами, с выводом сообщения в модальном окне. 
+Модальное окно реализовать самостоятельно, не использую 
+стандартные диалоговые окна объекта window.
+        </textarea>
+      </p>
+      <p style="text-align: center;">Введите число a: <input name='inp_a' ></p>
+      <p style="text-align: center;">Введите число b: <input name='inp_b'></p>
+      <p style="text-align: center;">Введите число c: <input name='inp_c'></p>
+      <p style="text-align: center;">Результат выполнения программы: <input name='inp_res'></p>
+      <p style="text-align: center;"><input type="button" value="Вычислить" id='processing'></p>
+    </form>
+    <div id="openModal" class="modalDialog">
+      <div>
+        <a href="#close" title="Закрыть" class="close">X</a>
+        <h2>Внимание!</h2>
+        <p id='message'></p>
+      </div>
+    </div>
+    <script>
+      "use strict";
+      processing.onclick = function () {
+        let message = ''
+        let valid = true
+        if (document.forms[0].elements[1].value === '' || document.forms[0].elements[2].value === '' || document.forms[0].elements[3].value === '') {
+          if (document.forms[0].elements[1].value === '') {
+            message = message + "Введите a!\n"
+            valid = false
+          }
+          if (document.forms[0].elements[2].value === '') {
+            message = message + "Введите b!\n"
+            valid = false
+          }
+          if (document.forms[0].elements[3].value === '') {
+            message = message + "Введите c!\n"
+            valid = false
+          }
+        } else {
+          if (isNaN(document.forms[0].elements[1].value)){
+            message = message + "Переменная a должна быть вещественной!\n"
+            valid = false
+          }
+          if (isNaN(document.forms[0].elements[2].value)){
+            message = message + "Переменная b должна быть вещественной!\n"
+            valid = false
+          }
+          if (isNaN(document.forms[0].elements[3].value)){
+            message = message + "Переменная c должна быть вещественной!\n"
+            valid = false
+          }
+        }
+        if (!valid) {
+          document.forms[0].elements[4].value = ''
+          let dialog = document.getElementById('message')
+          dialog.textContent = message
+          document.location.href = '#openModal'   
+        } else {
+          document.forms[0].elements[4].value = ((parseFloat(document.forms[0].elements[1].value) + parseFloat(document.forms[0].elements[2].value) + parseFloat(document.forms[0].elements[3].value)) / 3).toString()
+        }
+      }
+    </script>
+  </body>
+</html>

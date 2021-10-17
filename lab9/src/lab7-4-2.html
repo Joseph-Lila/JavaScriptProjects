@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <style>
+        #layer1, #layer2, #layer3 {
+            position: relative;
+            left: 40%;
+        }
+        #layer1 {
+            background-color: blue;
+            height: 300px;
+            top: 250px;
+            width: 300px;
+            font-size: 70px;
+            z-index: 2;
+        }
+        #layer2 {
+            background-color: brown;
+            height: 300px;
+            width: 300px;
+            left: 45%;
+            font-size: 70px;
+            z-index: 1;
+        }
+        #layer3 {
+            background-color: yellow;
+            height: 300px;
+            width: 300px;
+            left: 35%;
+            top: -400px;
+            font-size: 70px;
+            z-index: 3;
+        }
+        
+    </style>
+  </head>
+  <body>
+      <p>
+        <div id='layer1'></div>
+        <div id='layer2'></div>
+        <div id='layer3'></div>
+      </p>
+    <script>
+      "use strict";
+      let current_level = 4
+      layer1.onclick = function(){
+          let elem = document.getElementById(`layer1`)
+          elem.style.zIndex = current_level.toString()
+          current_level++
+      }
+      layer2.onclick = function(){
+          let elem = document.getElementById(`layer2`)
+          elem.style.zIndex = current_level.toString()
+          current_level++
+      }
+      layer3.onclick = function(){
+          let elem = document.getElementById(`layer3`)
+          elem.style.zIndex = current_level.toString()
+          current_level++
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <link rel="stylesheet" href="lab7-3.css"/>
+  </head>
+  <body>
+    <div onclick="tree_toggle(arguments[0])" onmouseover="add_special(arguments[0])" onmouseout="remove_special(arguments[0])">
+      <ul class="Container">
+        <li class="Node IsRoot ExpandClosed IsLast">
+          <div class="Expand"></div>
+          <div class="Content">[Этот компьютер]</div>
+          <ul class="Container">
+            <li class="Node ExpandClosed">
+              <div class="Expand"></div>
+              <div class="Content">[C:] Локальный диск</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+            <li class="Node ExpandClosed">
+              <div class="Expand"></div>
+              <div class="Content">[D:] Локальный диск</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+            <li class="Node ExpandClosed">
+              <div class="Expand"></div>
+              <div class="Content">[E:] KINGSTON</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+            <li class="Node ExpandClosed">
+              <div class="Expand"></div>
+              <div class="Content">[F:] Дисковод BD-ROM</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+            <li class="Node ExpandClosed">
+              <div class="Expand"></div>
+              <div class="Content">[H:] nick(\\gstu-srv)</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+            <li class="Node ExpandClosed IsLast">
+              <div class="Expand"></div>
+              <div class="Content">[L:] Электронная библиотека</div>
+              <ul class="Container">
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 1</div>
+                </li>
+                <li class="Node ExpandLeaf">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 2</div>
+                </li>
+                <li class="Node ExpandLeaf IsLast">
+                  <div class="Expand"></div>
+                  <div class="Content">Item 3</div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    <script>
+      "use strict";
+      function tree_toggle(event) {
+        event = event || window.event
+        var clickedElem = event.target || event.srcElement
+
+        if (!hasClass(clickedElem, 'Expand')) {
+          return // клик не там
+        }
+
+        // Node, на который кликнули
+        var node = clickedElem.parentNode
+        if (hasClass(node, 'ExpandLeaf')) {
+          return // клик на листе
+        }
+
+        // определить новый класс для узла
+        var newClass = hasClass(node, 'ExpandOpen') ? 'ExpandClosed' : 'ExpandOpen'
+        // заменить текущий класс на newClass
+        // регексп находит отдельно стоящий open|close и меняет на newClass
+        var re =  /(^|\s)(ExpandOpen|ExpandClosed)(\s|$)/
+        node.className = node.className.replace(re, '$1'+newClass+'$3')
+      }
+
+      function hasClass(elem, className) {
+        return new RegExp("(^|\\s)"+className+"(\\s|$)").test(elem.className)
+      }
+
+      function add_special(event){
+        event = event || window.event
+        var elem = event.target || event.srcElement
+        if (!hasClass(elem, 'Content')) {
+          return
+        }
+        elem.classList.add("SpecialStyle")
+      }
+
+      function remove_special(event){
+        event = event || window.event
+        var elem = event.target || event.srcElement
+        if (!hasClass(elem, 'Content')) {
+          return
+        }
+        elem.classList.remove("SpecialStyle")
+      }
+    </script>
+  </body>
+</html>

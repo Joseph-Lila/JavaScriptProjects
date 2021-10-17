@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+    td, th {
+      border: 1px solid rgb(70, 70, 150);
+      padding: 10px;
+      text-align: center;
+    }
+
+    table {
+      margin: auto;
+      margin-top: 250px;
+      border: 1px solid rgb(70, 70, 150);
+    }
+
+    img {
+      width: 150px;
+    }
+
+    body {
+      background-image: url(back.jpg);
+    }
+
+    #cont {
+      margin-left: 650px;
+      margin-right: 650px;
+      background-color: azure;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Артур Прокопенко</title>
+   </head>
+  <body>
+    <div id='cont'>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Флаг страны
+            </th>
+            <th>Название страны</th>
+            <th>Название валюты на английском</th>
+            <th>Название валюты на белорусском</th>
+            <th>Курс к бел. рублю</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="flag.jpg"></td>
+            <td>Исландия</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+       function httpGet(url) {
+            return new Promise(function (resolve, reject) {
+                let XMLH = new XMLHttpRequest();
+                XMLH.open('GET', url, true);
+                XMLH.onload = function () {
+                    if (this.status == 200) {
+                        resolve(JSON.parse(this.response));
+                    } else {
+                        let error = new Error(this.statusText);
+                        error.code = this.status;
+                        reject(error);
+                    }
+                };
+                XMLH.onerror = function () {
+                    reject(new Error("Network Error"));
+                };
+                XMLH.send();
+            });
+        }
+
+        httpGet("https://www.nbrb.by/api/exrates/currencies/58")
+            .then(
+                response => {
+                    httpGet("https://www.nbrb.by/api/exrates/rates/453")
+                        .then(
+                            response1 => {
+                                let trElem = document.querySelector("table>tbody>tr");
+                                trElem.innerHTML += `<td>${response.Cur_Name_Eng}</td><td>${response.Cur_Name_Bel}</td><td>${response1.Cur_OfficialRate.toFixed(2)}</td>`
+                            },
+                            error => console.log(`${error}`)
+                        )
+                },
+                error => console.log(`Rejected: ${error}`)
+            );
+
+    </script>
+  </body>
+</html> 

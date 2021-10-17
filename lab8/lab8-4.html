@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокопенко Артур</title>
+    <link rel="stylesheet" href="lab8-4.css"/>
+  </head>
+  <body>
+    <p><input type="button" id='processing' style="visibility: hidden;"></p>  
+    <div id="openModal" class="modalDialog">
+      <div>
+        <a href="#close" title="Закрыть" class="close" id='closer'>X</a>
+        <form name='my_form' style="background-color: snow; margin: 5px; border-radius: 10px; padding: 10px;">
+            <p style="text-align: center;">Видеокарта<br><hr></p>
+            <p style="text-align: center;">Введите 'Интерфейс': <input></p>
+            <p style="text-align: center;">Введите 'Производитель графического процессора': <input ></p>
+            <p style="text-align: center;">Введите 'Графический процессор': <input></p>
+            <p style="text-align: center;">Введите 'Частота графического процессора': <input></p>
+            <p style="text-align: center;">Введите 'Видеопамять (объем)': <input></p>
+            <p style="text-align: center;"><input type="button" value="Добавить" id='adding'></p>
+          </form>
+        <p id='message'></p>
+      </div>
+    </div>
+    <script>
+      "use strict";
+      let size = parseInt(prompt('Введите количество записей: '))
+      let current = 0
+      let my_collection = []
+      processing.onclick = function () {
+        document.location.href = '#openModal'   
+      }
+
+      function table_builder()  {
+        document.write(
+          `<table border = "1" cellpadding = "5">`
+            )
+        document.write(
+          `<tr><td colspan="6"; style="color:pink;text-align:center"> VideoCard </td></tr>
+          <tr><td style="color:orange;text-align:center"> № </td><td colspan="5"; style="color:green;text-align:center"> Свойства </td></tr>
+          <tr>
+            <td></td>
+            <td style="color:orange">interface</td>
+            <td style="color:orange">graphics_processor_manufacturer</td>
+            <td style="color:orange">graphic_processor</td>
+            <td style="color:orange">graphics_processor_frequency</td>
+            <td style="color:orange">video_memory_volume</td>
+          </tr>`
+        )
+
+        for(let i = 0; i < my_collection.length; i++){
+          document.write(
+            `<tr>
+              <td style="color:blue;text-align:center">${i + 1}</td>
+              <td style="color:red;text-align:center">${my_collection[i].interface}</td>
+              <td style="color:green;text-align:center">${my_collection[i].graphics_processor_manufacturer}</td>
+              <td style="color:purple;text-align:center">${my_collection[i].graphic_processor}</td>
+              <td style="color:black;text-align:center">${my_collection[i].graphics_processor_frequency}</td>
+              <td style="color:pink;text-align:center">${my_collection[i].video_memory_volume}</td>
+            </tr>`
+          )
+        }
+      }
+
+      closer.onclick = function () {
+        document.getElementById('adding').style.visibility='visible'
+        document.my_form.reset()
+        sleep(1000).then(() => { manage_aim() });
+      }
+
+      adding.onclick = function () {
+        my_collection.push({
+          interface: document.my_form.elements[0].value,
+          graphics_processor_manufacturer: document.my_form.elements[1].value,
+          graphic_processor: document.my_form.elements[2].value,
+          graphics_processor_frequency: document.my_form.elements[3].value,
+          video_memory_volume: document.my_form.elements[4].value,
+        })
+        document.getElementById('adding').style.visibility='hidden'
+        current++
+      }
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      function manage_aim() {
+        if(size > current) {
+          document.getElementById('processing').click()
+        } else {
+          table_builder()
+        }
+      }
+      manage_aim()
+    </script>
+  </body>
+</html>
